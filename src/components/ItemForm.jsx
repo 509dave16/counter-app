@@ -7,7 +7,7 @@ class ItemForm extends React.Component {
     super(props)
     this.state = { itemName: '', itemPrice: '' }
   }
-  
+
   render() {
     return (
        <form onSubmit={this.handleSubmit}>
@@ -24,7 +24,7 @@ class ItemForm extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor={ITEM_PRICE_FIELD}>Password</label>
+            <label htmlFor={ITEM_PRICE_FIELD}>Item Price</label>
             <input
               required
               type="number"
