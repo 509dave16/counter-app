@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux'
 
-// Stateless Functional Component
+import selectors from '../state/selectors'
 
 const NavBar = ({ totalCounters }) => {
   return (
@@ -16,4 +17,5 @@ const NavBar = ({ totalCounters }) => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => ({ totalCounters: selectors.items(state).length })
+export default connect(mapStateToProps)(NavBar);

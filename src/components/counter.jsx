@@ -5,12 +5,15 @@ class Counter extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-1">
-            <span style={{ fontSize: 24 }} className={this.getBadgeClasses()}>
+          <div className="col-md-10">
+            <span style={styles.textSize} className={this.getBadgeClasses()}>
               {this.formatCount()}
             </span>
+            <span style={styles.textSize}>
+              {this.props.counter.name + ' ' + this.getPrice()}
+            </span>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-2">
             <button
               className="btn btn-secondary"
               onClick={() => this.props.onIncrement(this.props.counter)}
@@ -42,10 +45,23 @@ class Counter extends Component {
     return classes;
   };
 
+  getPrice = () => {
+    return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(Number.parseFloat(this.props.counter.price))
+  }
+
   formatCount = () => {
     const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   };
 }
+
+const styles = ({
+  textSize: {
+    fontSize: '24px',
+  },
+  actions: {
+    marginLeft: '5px',
+  },
+})
 
 export default Counter;
