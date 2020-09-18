@@ -1,9 +1,8 @@
 import React, {
   Component
-} from "react";
-import NavBar from "./components/navbar";
-import Counters from "./components/counters";
-
+} from "react"
+import NavBar from "./components/navbar"
+import SwitchView from "./components/SwitchView"
 
 import {
   Provider
@@ -37,9 +36,7 @@ class App extends Component {
         <Provider store={store}>
           <PersistGate persistor={persistStore(store)} loading={LoadingSpinner}>
             <NavBar />
-            <main className="container">
-              <Counters />
-              </main>
+            <SwitchView />
           </PersistGate>
         </Provider>
       </div>

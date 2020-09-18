@@ -8,6 +8,7 @@ import { textSize } from '../config/styles'
 import { connect } from 'react-redux'
 import actions from '../state/actions'
 import selectors from '../state/selectors'
+import { CHECKOUT_PAGE } from "../config/constants"
 
 class Counters extends Component {
   render() {
@@ -35,9 +36,20 @@ class Counters extends Component {
           </span>
           <Total items={counters} />
         </div>
-        <ItemForm onSubmit={onSubmit}/>
+        <ItemForm onSubmit={onSubmit} />
+        <div className="row justify-content-center">
+          <button onClick={this.goToCheckout} class="btn btn-success" type="button">Checkout</button>
+        </div>
       </div>
     );
+  }
+
+  goToCheckout = () => {
+    if (this.props.counters.length === 0) {
+      alert("No items to checkout with. Please add 1 or more items.")
+      return
+    }
+    this.props.goToCheckout()
   }
 }
 
@@ -48,7 +60,8 @@ const mapDispatchToProps = (dispatch) => {
     onDecrement: counter => dispatch(actions.ormDecrementItem(counter.id)),
     onReset: () => dispatch(actions.ormReset()),
     onDelete: (counterId) => dispatch(actions.ormDeleteItem(counterId)),
-    onSubmit: (item) => dispatch(actions.ormCreateItem(item))
+    onSubmit: (item) => dispatch(actions.ormCreateItem(item)),
+    goToCheckout: () => dispatch(actions.navigationChangePage(CHECKOUT_PAGE))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Counters);

@@ -1,5 +1,5 @@
 import * as itemsActions from './items'
-
+import * as navigationActions from './navigation'
 const RESET = 'orm/RESET'
 
 function ormReset() {
@@ -10,6 +10,7 @@ function ormReset() {
 
 export default {
   ...itemsActions,
+  ...navigationActions,
   RESET,
   ormReset,
 }
