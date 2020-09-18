@@ -8,7 +8,7 @@ Cart/Checkout app assessment for Sippd based on below instructions for modificat
 6. The "cart" should persist across page refreshes. If a user hits the browser refresh the cart should not reset back to empty.
 7. A checkout button should take the user to a new page with a simple itemized receipt.
 # Demonstration
-You can watch a video demonstration [here](https://drive.google.com/file/d/1_B_e5sVeCBh1YC41YRVhiNC9ccbKv4F2/view?usp=sharing) that's hosted on Google Drive
+You can watch a video demonstration [here](https://drive.google.com/file/d/1kprUVPpNSNtbnXBwZxf5rR29t26ti6nd/view?usp=sharing) that's hosted on Google Drive
 
 # Local Environment Instructions
 - Install nvm in order to use Node 12.18.4: https://github.com/nvm-sh/nvm#installing-and-updating
