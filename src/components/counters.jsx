@@ -10,10 +10,6 @@ import selectors from '../state/selectors'
 import { getNumberAsCurrency } from '../utils/format'
 
 class Counters extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { itemName: '', itemPrice: '' }
-  }
   render() {
     const { counters, onReset, onDecrement, onIncrement, onDelete, onSubmit } = this.props;
     return (
