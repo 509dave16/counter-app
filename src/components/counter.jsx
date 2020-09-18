@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import { textSize } from '../config/styles'
 
+import { getNumberAsCurrency } from '../utils/format'
 class Counter extends Component {
   render() {
     return (
       <div>
         <div className="row">
           <div className="col-md-10">
-            <span style={styles.textSize} className={this.getBadgeClasses()}>
-              {this.formatCount()}
+            <span style={textSize} className="badge m-2 badge-primary">
+              {this.props.counter.value}
             </span>
-            <span style={styles.textSize}>
-              {this.props.counter.name + ' ' + this.getPrice()}
+            <span style={textSize}>
+              {this.props.counter.name + ' ' + getNumberAsCurrency(this.props.counter.price)}
             </span>
           </div>
           <div className="col-md-2">
@@ -38,30 +40,6 @@ class Counter extends Component {
       </div>
     );
   }
-
-  getBadgeClasses = () => {
-    let classes = "badge m-2 badge-";
-    classes += this.props.counter.value === 0 ? "warning" : "primary";
-    return classes;
-  };
-
-  getPrice = () => {
-    return Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(Number.parseFloat(this.props.counter.price))
-  }
-
-  formatCount = () => {
-    const { value } = this.props.counter;
-    return value === 0 ? "Zero" : value;
-  };
 }
-
-const styles = ({
-  textSize: {
-    fontSize: '24px',
-  },
-  actions: {
-    marginLeft: '5px',
-  },
-})
 
 export default Counter;

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Counter from "./counter";
 
+import { textSize } from '../config/styles'
+
 import { connect } from 'react-redux'
 import actions from '../state/actions'
 import selectors from '../state/selectors'
+import { getNumberAsCurrency } from '../utils/format'
 
 const ITEM_NAME_FIELD = 'itemName'
 const ITEM_PRICE_FIELD = 'itemPrice'
@@ -32,6 +35,14 @@ class Counters extends Component {
             onDelete={onDelete}
           />
         ))}
+        <div>
+          <span style={textSize} className="badge m-2 badge-primary">
+            {counters.reduce((totalItemCount, counter) => totalItemCount + counter.value, 0)}
+          </span>
+          <span style={textSize}>
+            {'Total - ' + getNumberAsCurrency(counters.reduce((totalItemPrice, counter) => totalItemPrice + (counter.price * counter.value), 0))}
+          </span>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor={ITEM_NAME_FIELD}>Item Name</label>
