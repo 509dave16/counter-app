@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import Counter from "./counter";
+import Item from "./Item";
 import ItemForm from "./ItemForm"
-import Total from './Total'
+import Total from '../../widgets/Total'
 
-import { textSize } from '../config/styles'
+import { textSize } from '../../../config/styles'
 
 import { connect } from 'react-redux'
-import actions from '../state/actions'
-import selectors from '../state/selectors'
-import { CHECKOUT_PAGE } from "../config/constants"
+import actions from '../../../state/actions'
+import selectors from '../../../state/selectors'
+import { CHECKOUT_PAGE } from "../../../config/constants"
 
-class Counters extends Component {
+class Cart extends Component {
   render() {
-    const { counters, onReset, onDecrement, onIncrement, onDelete, onSubmit } = this.props;
+    const { items, onReset, onDecrement, onIncrement, onDelete, onSubmit } = this.props;
     return (
       <div>
         <button
@@ -21,10 +21,10 @@ class Counters extends Component {
         >
           <i className="fa fa-recycle" aria-hidden="true" />
         </button>
-        {counters.map(counter => (
-          <Counter
-            key={counter.id}
-            counter={counter}
+        {items.map(item => (
+          <Item
+            key={item.id}
+            item={item}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
             onDelete={onDelete}
@@ -32,9 +32,9 @@ class Counters extends Component {
         ))}
         <div>
           <span style={textSize} className="badge m-2 badge-primary">
-            {counters.reduce((totalItemCount, counter) => totalItemCount + counter.value, 0)}
+            {items.reduce((totalItemCount, item) => totalItemCount + item.count, 0)}
           </span>
-          <Total items={counters} />
+          <Total items={items} />
         </div>
         <ItemForm onSubmit={onSubmit} />
         <div className="row justify-content-center">
@@ -45,7 +45,7 @@ class Counters extends Component {
   }
 
   goToCheckout = () => {
-    if (this.props.counters.length === 0) {
+    if (this.props.items.length === 0) {
       alert("No items to checkout with. Please add 1 or more items.")
       return
     }
@@ -53,15 +53,15 @@ class Counters extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({ counters: selectors.items(state) })
+const mapStateToProps = (state) => ({ items: selectors.items(state) })
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrement: counter => dispatch(actions.ormIncrementItem(counter.id)),
-    onDecrement: counter => dispatch(actions.ormDecrementItem(counter.id)),
+    onIncrement: item => dispatch(actions.ormIncrementItem(item.id)),
+    onDecrement: item => dispatch(actions.ormDecrementItem(item.id)),
     onReset: () => dispatch(actions.ormReset()),
-    onDelete: (counterId) => dispatch(actions.ormDeleteItem(counterId)),
+    onDelete: (itemId) => dispatch(actions.ormDeleteItem(itemId)),
     onSubmit: (item) => dispatch(actions.ormCreateItem(item)),
     goToCheckout: () => dispatch(actions.navigationChangePage(CHECKOUT_PAGE))
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Counters);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

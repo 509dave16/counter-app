@@ -1,10 +1,10 @@
 import * as React from 'react'
-import Total from './Total'
+import Total from '../widgets/Total'
 
 import { connect } from 'react-redux'
 
-import selectors from '../state/selectors'
-import { getNumberAsCurrency } from '../utils/format'
+import selectors from '../../state/selectors'
+import { getNumberAsCurrency } from '../../utils/format'
 
 class Checkout extends React.Component {
   render() {
@@ -21,11 +21,11 @@ class Checkout extends React.Component {
           </thead>
           <tbody>
             {
-              items.map(({ name, price, value}) => (
+              items.map(({ name, price, count}) => (
                 <tr key={name}>
                   <td>{name}</td>
                   <td>{getNumberAsCurrency(price)}</td>
-                  <td>{value}</td>
+                  <td>{count}</td>
                 </tr>
               ))
             }

@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Counters from './counters'
-import Checkout from './Checkout'
+import Items from '../pages/Cart'
+import Checkout from '../pages/Checkout'
 
 import { connect } from 'react-redux'
-import { CHECKOUT_PAGE, CART_PAGE } from '../config/constants'
+import { CHECKOUT_PAGE, CART_PAGE } from '../../config/constants'
 
 class SwitchView extends React.Component {
   render() {
@@ -20,7 +20,7 @@ class SwitchView extends React.Component {
     if (currentPage === CHECKOUT_PAGE) {
       return <Checkout />
     } else if (currentPage === CART_PAGE) {
-      return <Counters />
+      return <Items />
     }
   }
 }

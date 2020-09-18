@@ -1,8 +1,8 @@
 import React, {
   Component
 } from "react"
-import NavBar from "./components/navbar"
-import SwitchView from "./components/SwitchView"
+import NavBar from "./components/root/Navbar"
+import SwitchView from "./components/root/SwitchView"
 
 import {
   Provider

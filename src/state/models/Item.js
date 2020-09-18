@@ -7,14 +7,14 @@ import {
 } from 'redux-orm'
 import actions from '../actions'
 
-const handleAddition = (session, id, value) => {
+const handleAddition = (session, id, count) => {
   const item = session.Item.filter({
     id
   }).first()
   if (item) {
-    const computedValue = item.value + value
+    const computedValue = item.count + count
     if (computedValue) {
-      item.set('value', computedValue)
+      item.set('count', computedValue)
     } else {
       item.delete()
     }
@@ -78,7 +78,7 @@ Item.fields = {
   }),
   name: attr(),
   price: attr(),
-  value: attr({
+  count: attr({
     getDefault: () => 1
   }),
 }
