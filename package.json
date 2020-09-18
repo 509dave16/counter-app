@@ -10,11 +10,16 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
+    "immer": "^7.0.9",
     "jquery": "^3.3.1",
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.2.1",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.5",
+    "redux-orm": "^0.16.2",
+    "redux-persist": "^6.0.0",
     "typescript": "^3.4.2"
   },
   "scripts": {
